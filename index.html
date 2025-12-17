@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>+2 Mesi Assieme! 🌸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+   
+    --bg-gradient: linear-gradient(135deg, #fdfbfd 0%, #f3e5f5 50%, #e1bee7 100%);
+    --accent: #9c27b0;       
+    --accent-hover: #7b1fa2; 
+    --text-main: #4a148c;    
+    --text-muted: #8e24aa;   
+    
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.9);
+    --shadow: 0 10px 40px -10px rgba(156, 39, 176, 0.25);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    padding-bottom: 150px;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+ 
+  .orchid-decor {
+    position: fixed;
+    width: 200px;
+    opacity: 0.15; 
+    z-index: 0;
+    pointer-events: none;
+  }
+  .orchid-top-left { top: -20px; left: -20px; transform: rotate(-15deg); }
+  .orchid-bottom-right { bottom: -20px; right: -20px; transform: rotate(165deg); }
+
+  .logo {
+    width: 80px; height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 35px;
+    box-shadow: 0 5px 20px rgba(156, 39, 176, 0.3);
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 10px;
+    border: 2px solid #e1bee7;
+  }
+
+  h1 { margin: 10px 0 5px; font-weight: 900; color: var(--accent); font-size: 2.2rem; text-shadow: 2px 2px 0px rgba(255,255,255,0.5); }
+  .subtitle { font-weight: 700; color: var(--text-muted); opacity: 0.9; }
+
+  .card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hidden-step { display: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    background: linear-gradient(45deg, #ba68c8, #ab47bc);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(186, 104, 200, 0.4);
+    transition: all 0.2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    margin: 10px;
+  }
+  .btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(186, 104, 200, 0.6); }
+  
+  .btn.secondary {
+    background: white;
+    color: var(--accent);
+    border: 2px solid #e1bee7;
+    box-shadow: none;
+  }
+  .btn.secondary:hover { background: #f3e5f5; border-color: var(--accent); }
+
+  .nav-btn {
+    margin-top: 20px;
+    background: var(--accent);
+    color: white;
+    width: 100%;
+    max-width: 200px;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse { 0%{transform: scale(1);} 50%{transform: scale(1.05);} 100%{transform: scale(1);} }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  .gallery-grid img {
+    width: 100%; height: auto; border-radius: 12px; border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s;
+  }
+  .gallery-grid img:first-child { transform: rotate(-3deg); }
+  .gallery-grid img:last-child { transform: rotate(3deg); }
+  
+  .reasons-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px; }
+  .reason-chip {
+    background: white; border: 2px solid #e1bee7; color: var(--accent);
+    padding: 10px 15px; border-radius: 15px; font-weight: bold; cursor: pointer; transition: 0.3s;
+  }
+  .reason-chip:hover { background: var(--accent); color: white; transform: scale(1.1); }
+
+  .timeline { text-align: left; margin-top: 20px; padding-left: 15px; border-left: 3px solid #e1bee7; }
+  .timeline-item { margin-bottom: 20px; position: relative; padding-left: 20px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -24px; top: 5px; width: 15px; height: 15px; 
+    background: var(--accent); border-radius: 50%; border: 3px solid white;
+  }
+  .t-date { font-size: 12px; color: var(--text-muted); font-weight: 800; text-transform: uppercase; }
+
+  .date-box {
+    background: #f3e5f5; border: 2px dashed var(--accent);
+    border-radius: 15px; padding: 20px; margin: 15px 0;
+    font-size: 18px; font-weight: 700; min-height: 60px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .secret-input {
+    width: 100%; padding: 15px; border-radius: 15px; border: 2px solid #e1bee7;
+    background: rgba(255,255,255,0.8); font-size: 16px; outline: none; margin-bottom: 10px;
+  }
+  
+  .counter { 
+    background: white; color: var(--accent); padding: 10px 25px; border-radius: 20px; 
+    font-weight: 800; font-size: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-top: 15px; display: inline-block;
+    border: 2px solid #f3e5f5;
+  }
+
+  .quiz-option { 
+    background: white; padding: 15px; border-radius: 15px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; font-weight: 600;
+  }
+  .quiz-option:hover { border-color: var(--accent); background: #f3e5f5; }
+
+  .falling-flower { 
+    position: fixed; top: -10vh; z-index: 0; pointer-events: none;
+    animation: fall linear forwards;
+  }
+  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+  #confetti { position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; z-index:50; }
+  
+  footer { margin-top:30px; color: var(--text-muted); opacity:0.6; font-size:12px; text-align:center; padding-bottom: 20px; }
+ </style>
+</head>
+
+<body>
+
+  <img src="https://cdn.pixabay.com/photo/2018/02/13/20/07/flower-3151475_1280.png" class="orchid-decor orchid-top-left">
+  <img src="https://cdn.pixabay.com/photo/2018/02/13/20/07/flower-3151475_1280.png" class="orchid-decor orchid-bottom-right">
+  <canvas id="confetti"></canvas>
+
+  <div class="container">
+
+    <div class="card">
+      <div class="logo">🌸</div>
+        <h1>+2 Mesi Assieme!</h1>
+        <h2> Welcome to your very own personalized website!!! </h2> <br>
+        <img src="img/kitty.webp" alt="flowers" width="35%"> <br> <br><br><br><br><br><br><br><br><br>
+        <h2> Now, starting off: </h2> <br>
+        <div class="subtitle">We have been together for:</div>
+        <div id="timer" class="counter">Calculating...</div>  <br> <br>
+        <button class="btn nav-btn" id="btnStep1" onclick="openStep(1, this)">Continue ➔</button>
+    </div>
+
+    <div id="step1" class="card hidden-step">
+        <h2>But wait!!!</h2>
+        <h3>Before you start... <img src="img/cat.png" width="30" style="vertical-align: middle;"></h3> <br><br><br>
+        <div style="margin-top:20px"><br><br> <img src="img/disco.gif" width="310" style="vertical-align: middle;"> <br>
+          <button class="btn secondary" id="startBtn">Press play cutie 🎶</button>
+          
+        </div><br><br><br>
+        or you know...just skip<br>
+        <div id="revealArea" style="margin-top:20px; display:none; background: rgba(255,255,255,0.5); padding: 15px; border-radius: 12px;">
+          <p id="typedText" style="font-size: 18px; font-weight: 700; color: var(--accent); margin: 0;"></p>
+        </div>
+        <button class="btn nav-btn" id="btnStep1" onclick="openStep(2, this)">Continue ➔</button>
+    </div>
+
+    <div id="step2" class="card hidden-step">
+        <p style="font-size: 18px; line-height: 1.6; color: var(--text-main);">
+          Since  you know how much i hate flowers... i wanted to make something that would actually last longer. <br><br>
+          soo..........
+          <br>
+          
+
+
+        </p>
+        <div style="margin-top: 15px;">
+          <button class="btn secondary" id="showPhotosBtn" style="font-size: 14px;">Oh btw, press me real quick 👀</button>
+        </div>
+        <div id="galleryArea" style="display:none; margin-top: 20px;">
+            <h2 style="color: var(--accent); margin-bottom: 10px;">Some flowers for the road ma heart <img src="img/cat.png" width="30" style="vertical-align: middle;"> </h2>
+            <img src="img/cattt.gif" style="width: 300px; border-radius: 10px; margin-bottom:10px;">
+            <div class="gallery-grid">
+              <img src="img/flower.gif" alt="flower">
+              <img src="img/flowers.jpg" alt="flowers">
+            </div>
+            <button class="btn nav-btn" id="btnStep2" onclick="openStep(3, this)">Continue ➔</button>
+        </div>
+    </div>
+
+    <div id="step3" class="card hidden-step">
+      <h3 style="color:var(--accent);">I was supposed to write you a letter, but fell asleep last time so might as well IMPLEMENT it in now right?</h3>
+      <p style="font-size: 14px; opacity: 0.8;">Click the buttons!</p>
+      <div class="reasons-container" id="reasonsGrid">
+      </div>
+      <button class="btn nav-btn" onclick="openStep(4, this)">Next Surprise ➔</button>
+    </div>
+    <div id="step3" class="card hidden-step">
+      <h3 style="color:var(--accent);">Things I love about you ❤️</h3>
+      <p style="font-size: 14px; opacity: 0.8;">Click the buttons!</p>
+      <div class="reasons-container" id="reasonsGrid">
+      </div>
+      <button class="btn nav-btn" onclick="openStep(4, this)">Next Surprise ➔</button>
+    </div>
+
+    <div id="step4" class="card hidden-step">
+      <img src="img/where.gif" alt="where">
+      <h3 style="color:var(--accent);">Where we met!!!</h3>
+      <div>
+        <div >
+           <iframe src="https://www.google.com/maps/embed?pb=!4v1765981316858!6m8!1m7!1sxjct-NUFLz0mBHPfpE8nig!2m2!1d45.69551073040791!2d9.670458229803865!3f142.15849270768746!4f-31.08429241109345!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div><br> <br>
+             <h3 style="color:var(--accent);">I even got a pic hehe <img src="img/cat.png" width="30" style="vertical-align: middle;"> </h3>
+            <img src="img/img2.jpeg" alt="img2" width="500px">
+          </div>
+       
+      <button class="btn nav-btn" onclick="openStep(5, this)">Continue ➔</button>
+    </div>
+
+    <div id="step5" class="card hidden-step">
+      <h3 style="color:var(--accent);">Quick Question: Do you love me?</h3><br>
+      <img src="img/sad.gif" alt="sad">
+      <div style="height: 100px; position: relative; display: flex; justify-content: center; gap: 35px; align-items: center;">
+        <button class="btn" onclick="finishPrank(this)">YES!</button>
+        <button class="btn secondary" id="noBtn">No</button>
+      </div>
+    </div>
+     <div id="step6" class="card hidden-step">
+      <button class="btn nav-btn" onclick="openStep(9, this)">Continue ➔</button>
+    </div>
+   
+    <div id="step9" class="card hidden-step">
+      <h3 style="color:var(--accent);">
+      Now, to unlock a cute little message, you’ll need to enter a special date:
+      </h3>
+      <p style="font-size:14px; margin-bottom: 15px;">(DD/MM/YYYY)</p>
+      <input class="secret-input" id="secretInput" placeholder="Type here...">
+      <button class="btn" id="unlockBtn">Unlock</button>
+      
+      <div id="secretMessage" style="display:none; margin-top:15px; padding:15px; 
+          background:white; border-radius:10px; color: var(--accent); font-weight: bold;">
+          <button class="btn nav-btn" onclick="openStep(10, this)">Last important thing!!! ➔</button>
+        </div>
+      </div>
+
+    <div id="step10" class="card hidden-step">
+      <h3 style="color:var(--accent);">NO, THIS WASN'T A BET!!!!!!!!! <br>I truly do care about us, although some extra dollars wouldn’t have been bad hehe<img src="img/cat.png" width="30" style="vertical-align: middle;"> <br> <br><br>
+      Scroll down a bit <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      
+      A bit more... <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      
+      Some more...<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></h3>
+      I LOVEEEEEEEEEEEEEEEEEEEEEEEE YOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 😽💞 
+      <br><br>
+      <img src="img/catttata.gif" alt="catttata">
+      <div style=" position: relative; display: flex; justify-content: center; align-items: center;">
+      </div>
+    </div>
+   
+   </div>
+
+    <footer>yours truly</footer>
+
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="img/Principessa.mp3" type="audio/mpeg">
+  </audio>
+
+<script>
+
+  const CONFIG = {
+    startDate: new Date(2025, 9, 21), 
+    loveLetter: "Wait for it.................. 3, 2, 1 :  ",
+
+    reasons: [
+      "I hate the way you...", "I hate the way you...", "I hate the way you...", "I hate the way you...","I hate the way you...","I hate the way you...", 
+      "I hate the way you...", "I hate the way you...", " I hate the way you...", "But the thing I truly hate the most is..." 
+    ],
+
+    hateReasons: [
+      "always try to explain new things to me, especially those weird words that no one even uses.",   
+      "go out of your way to translate stuff for me when you could just laugh it off and go on about your day.",    
+      "your perfume sticks to my clothes, making me miss you even more.",   
+      "play with my hair because you know how much I enjoy it, and it makes me feel like a kid again.",      
+      "stop and pet every cat we see, because each time they approach you, it reminds me of how contagious your love is.",   
+      "each time you leave a mark on me, it makes me miss you even more each time i look in the mirror",          
+      "always compare yourself to other people, when in reality you’re the most loving person I’ve ever met.",
+      "are always so interested in everything I say, and in how much effort you put into learning about my hobbies and passions.",
+      "ARE ALL MINEEEEEE.",
+      "how genuine you’ve been with me, opening up about your past, telling me about your insecurities, dreams and ambitions, and letting me be part of your family. I can't imagine a day where I wouldn’t be suffering if you weren’t mine anymore." 
+    ],
+
+    secretCode: "21/10/2025", 
+    secretReward: "I know that we’ll have our ups and downs in life, but just know that I’ll always be there for you no matter what. May this letter be a reminder to us that if we ever lose ourselves, we can always find our way back to each other."
+  };
+
+  function updateTimer() {
+    const now = new Date();
+    const diff = now - CONFIG.startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("timer").innerText = `${days} days!!!!!!!!`;
+  }
+  updateTimer();
+
+  function openStep(stepNumber, btnElement) {
+    if(btnElement) btnElement.style.display = 'none';
+    const nextCard = document.getElementById('step' + stepNumber);
+    nextCard.style.display = 'block';
+    nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    startConfetti(); 
+  }
+
+  const startBtn = document.getElementById("startBtn");
+  const bgMusic = document.getElementById("bgMusic");
+  startBtn.addEventListener("click", () => {
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(e => console.log("Audio needs interaction"));
+    startBtn.innerText = "Playing... 🎶";
+    startBtn.style.opacity = "0.7";
+    document.getElementById("revealArea").style.display = "block";
+    let i = 0; const text = CONFIG.loveLetter;
+    document.getElementById("typedText").innerHTML = ""; 
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typedText").innerHTML += text.charAt(i);
+        i++; setTimeout(typeWriter, 100);
+      }
+    }
+    typeWriter();
+  });
+
+  document.getElementById("showPhotosBtn").addEventListener("click", function() {
+    this.style.display = 'none';
+    document.getElementById('galleryArea').style.display = 'block';
+  });
+
+  const reasonsContainer = document.getElementById("reasonsGrid");
+  CONFIG.reasons.forEach((r, index) => {
+    const chip = document.createElement("div");
+    chip.className = "reason-chip";
+    chip.innerText = r;
+    
+    chip.onclick = () => { 
+      chip.style.background = "var(--accent)"; 
+      chip.style.color = "white"; 
+
+      if (CONFIG.hateReasons && CONFIG.hateReasons[index]) {
+        chip.innerText = CONFIG.hateReasons[index]; 
+      } else {
+        chip.innerText = "cazzo vai a leggere il codice?"; 
+      }
+    };
+    reasonsContainer.appendChild(chip);
+  });
+
+  const noBtn = document.getElementById("noBtn");
+  noBtn.addEventListener("mouseover", moveButton);
+  noBtn.addEventListener("click", moveButton);
+  function moveButton() {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+  function finishPrank(btn) {
+    alert("I KNEW IT! I love you too!!!!! ❤️");
+    btn.parentElement.style.display = 'none'; 
+    openStep(6, null);
+  }
+
+  function spinDate() {
+    const box = document.getElementById("dateDisplay");
+    let count = 0;
+    const interval = setInterval(() => {
+      box.innerText = CONFIG.dateIdeas[Math.floor(Math.random() * CONFIG.dateIdeas.length)];
+      count++;
+      if(count > 10) clearInterval(interval);
+    }, 100);
+  }
+
+  document.getElementById("unlockBtn").addEventListener("click", () => {
+    const input = document.getElementById("secretInput").value.trim();
+    const msg = document.getElementById("secretMessage");
+
+    if (input === CONFIG.secretCode) {
+      msg.style.display = "block";
+      msg.innerHTML = `
+        <p>${CONFIG.secretReward}</p>
+        <button class="btn nav-btn" onclick="openStep(10, this)">Continue ➔</button>
+      `;
+      startConfetti();
+    } else {
+      alert("You sure? Try again."); 
+    }
+  });
+
+  setInterval(() => {
+    const flower = document.createElement("div"); 
+    flower.className = "falling-flower";
+    const flowers = ['🌸', '🌺', '💮', '💐', '🐱', '🐈', '😻', '😽', '🐾'];
+    flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = Math.random() * 3 + 2 + "s";
+    flower.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 5000);
+  }, 400);
+
+  const canvas = document.getElementById("confetti"); const ctx = canvas.getContext("2d"); let pieces = [];
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.onresize = resize; resize();
+  function startConfetti() {
+    for(let i=0; i<100; i++) pieces.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height - canvas.height, color: `hsl(${Math.random()*360}, 100%, 50%)`, size: Math.random()*8+4, speed: Math.random()*5+2});
+    updateConfetti();
+  }
+  function updateConfetti() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach((p,i) => { p.y += p.speed; ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, p.size, p.size); if(p.y > canvas.height) pieces.splice(i,1); });
+    if(pieces.length > 0) requestAnimationFrame(updateConfetti);
+  }
+ </script>
+</body>
+
+</html>
